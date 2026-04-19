@@ -1,721 +1,481 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Krish Modi - Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #0a0a0a;
-            overflow-x: hidden;
-        }
-
-        /* Animated background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
-            opacity: 0.1;
-        }
-
-        .bg-animation::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"><animate attributeName="opacity" values="0.1;0.5;0.1" dur="3s" repeatCount="indefinite"/></circle><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.1"><animate attributeName="opacity" values="0.1;0.4;0.1" dur="4s" repeatCount="indefinite"/></circle><circle cx="60" cy="80" r="1" fill="white" opacity="0.1"><animate attributeName="opacity" values="0.1;0.3;0.1" dur="5s" repeatCount="indefinite"/></circle></svg>');
-            animation: float 20s infinite linear;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            100% { transform: translateY(-100px) rotate(360deg); }
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1rem 2rem;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            background: rgba(10, 10, 10, 0.98);
-            border-bottom: 1px solid #333;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #667eea;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #667eea;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #fff;
-            position: relative;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease forwards;
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.3s forwards;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.6s forwards;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Sections */
-        section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: #fff;
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-image {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-image::after {
-            content: '👨‍💻';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 5rem;
-        }
-
-        .about-text {
-            color: #ccc;
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px);
-            background: rgba(102, 126, 234, 0.1);
-            border-color: #667eea;
-        }
-
-        .skill-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .skill-card h3 {
-            color: #fff;
-            margin-bottom: 1rem;
-        }
-
-        .skill-card p {
-            color: #ccc;
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
-        }
-
-        .project-image {
-            height: 200px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-image::after {
-            content: '🚀';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 3rem;
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-content h3 {
-            color: #fff;
-            margin-bottom: 1rem;
-        }
-
-        .project-content p {
-            color: #ccc;
-            margin-bottom: 1rem;
-        }
-
-        .project-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            background: #667eea;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-
-        /* Contact Section */
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            padding: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            font-size: 1rem;
-        }
-
-        .contact-form input::placeholder,
-        .contact-form textarea::placeholder {
-            color: #aaa;
-        }
-
-        .contact-info {
-            color: #ccc;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-item i {
-            font-size: 1.5rem;
-            color: #667eea;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.05);
-            color: #ccc;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
-
-            section {
-                padding: 3rem 1rem;
-            }
-        }
-
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Modi Krish — Data Scientist & Web Developer. Building intelligent, scalable web applications powered by data-driven insights.">
+  <meta name="keywords" content="Modi Krish, Data Scientist, Web Developer, React, Python, Portfolio">
+  <meta name="author" content="Modi Krish">
+  <title>Modi Krish — Data Scientist & Web Developer</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body>
-    <div class="bg-animation"></div>
-    
-    <nav id="navbar">
-        <div class="nav-container">
-            <a href="#home" class="logo">Modi.Dev</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+
+  <!-- Background Effects -->
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow--purple"></div>
+  <div class="bg-glow bg-glow--blue"></div>
+  <div class="bg-glow bg-glow--cyan"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="#" class="navbar__logo">MK.</a>
+      <ul class="navbar__links" id="navLinks">
+        <li><a href="#home" class="navbar__link active">Home</a></li>
+        <li><a href="#about" class="navbar__link">About</a></li>
+        <li><a href="#skills" class="navbar__link">Skills</a></li>
+        <li><a href="#projects" class="navbar__link">Projects</a></li>
+        <li><a href="#experience" class="navbar__link">Experience</a></li>
+        <li><a href="#contact" class="navbar__link">Contact</a></li>
+      </ul>
+      <a href="#contact" class="navbar__cta">Let's Talk</a>
+      <button class="navbar__menu-btn" id="menuBtn" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero section" id="home">
+    <div class="hero__container section__container">
+      <div class="hero__content">
+        <div class="hero__badge">
+          <span class="dot"></span>
+          Available for Projects
         </div>
-    </nav>
-
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Krish Modi Developer</h1>
-            <p>Python with AI/ML Developer</p>
-            <a href="#projects" class="cta-button">View My Work</a>
+        <p class="hero__greeting">Hello, I'm</p>
+        <h1 class="hero__name">
+          Modi<br>
+          <span class="hero__name-gradient">Krish</span>
+        </h1>
+        <div class="hero__roles">
+          <span class="hero__role">🧠 Data Scientist</span>
+          <span class="hero__role">💻 Web Developer</span>
+          <span class="hero__role">🎨 UI Designer</span>
         </div>
-    </section>
-
-    <section id="about">
-        <h2 class="fade-in">About Me</h2>
-        <div class="about-content fade-in">
-            <div class="about-image"></div>
-            <div class="about-text">
-                <p>Driven and detail-oriented B.Tech student in Computer Science and Engineering with a strong foundation in Python, OpenCV, and full-stack development.</p>
-                <p>Adept at building real-world AI applications, including face recognition and gesture-controlled systems. </p>
-                <p>Actively involved in competitive programming across multiple platforms. Seeking opportunities to apply my skills in software development and AI-driven applications</p>
-            </div>
+        <p class="hero__desc">
+          Building intelligent, scalable web applications powered by data-driven insights.
+          I transform complex data into impactful solutions and craft beautiful digital experiences.
+        </p>
+        <div class="hero__actions">
+          <a href="#projects" class="btn btn--primary">
+            <i class="fa-solid fa-rocket"></i> View My Work
+          </a>
+          <a href="#contact" class="btn btn--ghost">
+            <i class="fa-solid fa-paper-plane"></i> Get In Touch
+          </a>
         </div>
-    </section>
-
-    <section id="skills">
-        <h2 class="fade-in">Skills & Expertise</h2>
-        <div class="skills-grid">
-            <div class="skill-card fade-in">
-                <div class="skill-icon">🐍</div>
-                <h3>Python Development</h3>
-                <p>OpenCV, RestApi, Mediapipe, NumPy </p>
-            </div>
-            <div class="skill-card fade-in">
-                <div class="skill-icon">🌐</div>
-                <h3>Web Development</h3>
-                <p>HTML5, CSS3, JavaScript</p>
-            </div>
-            <!-- <div class="skill-card fade-in">
-                <div class="skill-icon">🗄️</div>
-                <h3>Database & Cloud</h3>
-                <p>PostgreSQL, MongoDB, AWS, Docker, Kubernetes, CI/CD</p>
-            </div> -->
-            <!-- <div class="skill-card fade-in">
-                <div class="skill-icon">📊</div>
-                <h3>Data & Analytics</h3>
-                <p>Pandas, NumPy, Matplotlib, TensorFlow, Data Visualization</p>
-            </div> -->
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <div class="hero__stat-value" data-count="10">0+</div>
+            <div class="hero__stat-label">Projects</div>
+          </div>
+          <div class="hero__stat">
+            <div class="hero__stat-value" data-count="5">0+</div>
+            <div class="hero__stat-label">Technologies</div>
+          </div>
+          <div class="hero__stat">
+            <div class="hero__stat-value" data-count="2">0+</div>
+            <div class="hero__stat-label">Years Experience</div>
+          </div>
         </div>
-    </section>
-
-    <section id="projects">
-        <h2 class="fade-in">Featured Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card fade-in">
-                <div class="project-image"></div>
-                <div class="project-content">
-                    <h3>Face Recognition Attendence System</h3>
-                    <p>A system that help in making Attendence easy.</p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">DeepFace</span>
-                        <span class="tag">OpenCV</span>
-                        <span class="tag">Google Sheets API </span>
-                        <span class="tag">NumPy</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card fade-in">
-                <div class="project-image"></div>
-                <div class="project-content">
-                    <h3>Hand Gesture Controller</h3>
-                    <p>Developed a real-time hand gesture controller using OpenCV to enable touchless interaction through webcam-based gesture recognition.</p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">OpenCV</span>
-                        <span class="tag">Mediapipe</span>
-                        <span class="tag">NumPy</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card fade-in">
-                <div class="project-image"></div>
-                <div class="project-content">
-                    <h3>360 Degree Rotating Solar Panel</h3>
-                    <p>Built a 360-degree rotating solar panel system using Arduino Uno that tracks sunlight to maximize energy efficiency.</p>
-                    <div class="project-tags">
-                        <span class="tag">Arduino Uno</span>
-                        <span class="tag">C/C++ (Arduino IDE)</span>
-                        <span class="tag">Resistors</span>
-                        <span class="tag">LDR (Light Dependent Resistors)</span>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="hero__visual">
+        <div class="hero__avatar-wrapper">
+          <div class="hero__avatar-ring"></div>
+          <div class="hero__avatar-ring hero__avatar-ring--outer"></div>
+          <img src="avatar.png" alt="Modi Krish" class="hero__avatar">
         </div>
-    </section>
-
-    <section id="contact">
-        <h2 class="fade-in">Get In Touch</h2>
-        <div class="contact-content fade-in">
-            <div class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <input type="text" placeholder="Subject" required>
-                <textarea rows="5" placeholder="Your Message" required></textarea>
-                <button type="submit" class="cta-button">Send Message</button>
-            </div>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <span>📧</span>
-                    <div>
-                        <strong>Email</strong><br>
-                        krishmody311@gmail.com
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <span>📱</span>
-                    <div>
-                        <strong>Phone</strong><br>
-                        +91 8160443606
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <span>📍</span>
-                    <div>
-                        <strong>Location</strong><br>
-                        Vadodara, Gujarat
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <span>💼</span>
-                    <div>
-                        <strong>LinkedIn</strong><br>
-                        https://www.linkedin.com/in/modikrish0311/
-                    </div>
-                </div>
-            </div>
+        <div class="hero__float-card hero__float-card--top">
+          <span class="icon">🐍</span>
+          <span class="label">Python</span> · <span class="value">Expert</span>
         </div>
-    </section>
+        <div class="hero__float-card hero__float-card--bottom">
+          <span class="icon">⚛️</span>
+          <span class="label">React</span> · <span class="value">Advanced</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-        <p>&copy; 2025 Krish Modi. All rights reserved.</p>
-    </footer>
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="section__container">
+      <div class="reveal">
+        <span class="section__label">About Me</span>
+        <h2 class="section__title">Turning Data Into<br>Digital Experiences</h2>
+      </div>
+      <div class="about__grid">
+        <div class="about__image-wrapper reveal">
+          <img src="avatar.png" alt="Modi Krish - About" class="about__image">
+          <div class="about__image-overlay"></div>
+        </div>
+        <div class="about__content reveal">
+          <p class="about__text">
+            I'm <strong>Modi Krish</strong>, a passionate Data Scientist and Web Developer based in India.
+            I specialize in building intelligent web applications that combine the power of machine learning
+            with clean, modern UI/UX design.
+          </p>
+          <p class="about__text">
+            My journey spans across data analytics, predictive modeling, and full-stack web development.
+            I love tackling complex problems — from building civic issue tracking platforms that help
+            communities, to creating data-driven dashboards that uncover powerful insights.
+          </p>
+          <p class="about__text">
+            When I'm not coding, you'll find me exploring new frameworks, contributing to open-source
+            projects, or creating intuitive designs in Figma.
+          </p>
+          <div class="about__highlights">
+            <div class="about__highlight-card">
+              <div class="about__highlight-icon">🎯</div>
+              <div class="about__highlight-title">Problem Solver</div>
+              <div class="about__highlight-desc">Analytical approach to complex challenges</div>
+            </div>
+            <div class="about__highlight-card">
+              <div class="about__highlight-icon">🚀</div>
+              <div class="about__highlight-title">Fast Learner</div>
+              <div class="about__highlight-desc">Always adopting the latest technologies</div>
+            </div>
+            <div class="about__highlight-card">
+              <div class="about__highlight-icon">🤝</div>
+              <div class="about__highlight-title">Team Player</div>
+              <div class="about__highlight-desc">Excellent collaboration & communication</div>
+            </div>
+            <div class="about__highlight-card">
+              <div class="about__highlight-icon">💡</div>
+              <div class="about__highlight-title">Creative Thinker</div>
+              <div class="about__highlight-desc">Unique solutions with elegant design</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+  <!-- Skills Section -->
+  <section class="section" id="skills">
+    <div class="section__container">
+      <div class="reveal">
+        <span class="section__label">Skills & Tools</span>
+        <h2 class="section__title">My Tech Arsenal</h2>
+        <p class="section__subtitle">Technologies and tools I use to bring ideas to life.</p>
+      </div>
+      <div class="skills__grid">
+        <div class="skill-card reveal">
+          <div class="skill-card__icon skill-card__icon--cyan">⚛️</div>
+          <h3 class="skill-card__title">Frontend Development</h3>
+          <p class="skill-card__desc">Building responsive, performant user interfaces with modern frameworks and tools.
+          </p>
+          <div class="skill-card__tags">
+            <span class="skill-card__tag">React</span>
+            <span class="skill-card__tag">Next.js</span>
+            <span class="skill-card__tag">HTML5</span>
+            <span class="skill-card__tag">CSS3</span>
+            <span class="skill-card__tag">JavaScript</span>
+            <span class="skill-card__tag">TypeScript</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card__icon skill-card__icon--purple">🐍</div>
+          <h3 class="skill-card__title">Data Science & ML</h3>
+          <p class="skill-card__desc">Extracting insights from data using statistical analysis, machine learning, and
+            deep learning.</p>
+          <div class="skill-card__tags">
+            <span class="skill-card__tag">Python</span>
+            <span class="skill-card__tag">Pandas</span>
+            <span class="skill-card__tag">NumPy</span>
+            <span class="skill-card__tag">Scikit-Learn</span>
+            <span class="skill-card__tag">TensorFlow</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card__icon skill-card__icon--blue">🗄️</div>
+          <h3 class="skill-card__title">Backend & Databases</h3>
+          <p class="skill-card__desc">Designing robust APIs and managing database architectures for scalable
+            applications.</p>
+          <div class="skill-card__tags">
+            <span class="skill-card__tag">Node.js</span>
+            <span class="skill-card__tag">Express</span>
+            <span class="skill-card__tag">PostgreSQL</span>
+            <span class="skill-card__tag">MongoDB</span>
+            <span class="skill-card__tag">REST API</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card__icon skill-card__icon--pink">🎨</div>
+          <h3 class="skill-card__title">UI/UX Design</h3>
+          <p class="skill-card__desc">Crafting beautiful, intuitive interfaces with a focus on user experience and
+            accessibility.</p>
+          <div class="skill-card__tags">
+            <span class="skill-card__tag">Figma</span>
+            <span class="skill-card__tag">Wireframing</span>
+            <span class="skill-card__tag">Prototyping</span>
+            <span class="skill-card__tag">Design Systems</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card__icon skill-card__icon--green">📊</div>
+          <h3 class="skill-card__title">Data Visualization</h3>
+          <p class="skill-card__desc">Transforming raw data into compelling visual stories using modern charting
+            libraries.</p>
+          <div class="skill-card__tags">
+            <span class="skill-card__tag">Matplotlib</span>
+            <span class="skill-card__tag">Seaborn</span>
+            <span class="skill-card__tag">Plotly</span>
+            <span class="skill-card__tag">D3.js</span>
+            <span class="skill-card__tag">Chart.js</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card__icon skill-card__icon--orange">🛠️</div>
+          <h3 class="skill-card__title">DevOps & Tools</h3>
+          <p class="skill-card__desc">Streamlining development workflows with version control, CI/CD, and cloud
+            platforms.</p>
+          <div class="skill-card__tags">
+            <span class="skill-card__tag">Git</span>
+            <span class="skill-card__tag">GitHub</span>
+            <span class="skill-card__tag">VS Code</span>
+            <span class="skill-card__tag">Docker</span>
+            <span class="skill-card__tag">Vercel</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+  <!-- Projects Section -->
+  <section class="section" id="projects">
+    <div class="section__container">
+      <div class="reveal">
+        <span class="section__label">My Work</span>
+        <h2 class="section__title">Featured Projects</h2>
+        <p class="section__subtitle">A selection of projects that showcase my skills and passion for building great
+          products.</p>
+      </div>
+      <div class="projects__grid">
+        <!-- Project 1: Civic Issue Tracker -->
+        <div class="project-card reveal">
+          <img src="project-civic.png" alt="Civic Issue Tracker" class="project-card__image">
+          <div class="project-card__content">
+            <span class="project-card__category">Full-Stack Web App</span>
+            <h3 class="project-card__title">Civic Issue Tracker</h3>
+            <p class="project-card__desc">
+              A comprehensive platform for citizens to report civic issues like potholes, broken streetlights,
+              and sanitation problems. Features real-time tracking, department dashboards, and role-based access for
+              field workers, admins, and department heads.
+            </p>
+            <div class="project-card__tech">
+              <span class="project-card__tech-tag">Next.js</span>
+              <span class="project-card__tech-tag">React</span>
+              <span class="project-card__tech-tag">Supabase</span>
+              <span class="project-card__tech-tag">PostgreSQL</span>
+              <span class="project-card__tech-tag">Mapbox</span>
+            </div>
+            <div class="project-card__links">
+              <a href="#" class="project-card__link">
+                <i class="fa-brands fa-github"></i> Source Code
+              </a>
+              <a href="#" class="project-card__link">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+              </a>
+            </div>
+          </div>
+        </div>
 
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        <!-- Project 2: Data Analytics Dashboard -->
+        <div class="project-card reveal">
+          <img src="project-data.png" alt="Data Analytics Dashboard" class="project-card__image">
+          <div class="project-card__content">
+            <span class="project-card__category">Data Science</span>
+            <h3 class="project-card__title">Analytics Dashboard</h3>
+            <p class="project-card__desc">
+              A dynamic analytics dashboard that visualizes complex datasets with interactive charts,
+              heatmaps, and predictive models. Built for data-driven decision-making using Python's
+              powerful data science ecosystem.
+            </p>
+            <div class="project-card__tech">
+              <span class="project-card__tech-tag">Python</span>
+              <span class="project-card__tech-tag">Pandas</span>
+              <span class="project-card__tech-tag">Plotly</span>
+              <span class="project-card__tech-tag">Streamlit</span>
+              <span class="project-card__tech-tag">Scikit-Learn</span>
+            </div>
+            <div class="project-card__links">
+              <a href="#" class="project-card__link">
+                <i class="fa-brands fa-github"></i> Source Code
+              </a>
+              <a href="#" class="project-card__link">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+              </a>
+            </div>
+          </div>
+        </div>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+        <!-- Project 3: E-Commerce Platform -->
+        <div class="project-card reveal">
+          <img src="project-web.png" alt="E-Commerce Platform" class="project-card__image">
+          <div class="project-card__content">
+            <span class="project-card__category">Web Development</span>
+            <h3 class="project-card__title">E-Commerce Platform</h3>
+            <p class="project-card__desc">
+              A full-featured e-commerce platform with product catalog, shopping cart,
+              secure checkout, and admin dashboard. Clean modern UI with
+              smooth animations and fully responsive design.
+            </p>
+            <div class="project-card__tech">
+              <span class="project-card__tech-tag">React</span>
+              <span class="project-card__tech-tag">Node.js</span>
+              <span class="project-card__tech-tag">MongoDB</span>
+              <span class="project-card__tech-tag">Stripe</span>
+              <span class="project-card__tech-tag">JWT</span>
+            </div>
+            <div class="project-card__links">
+              <a href="#" class="project-card__link">
+                <i class="fa-brands fa-github"></i> Source Code
+              </a>
+              <a href="#" class="project-card__link">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Observe all fade-in elements
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
+  <!-- Experience Section -->
+  <section class="section" id="experience">
+    <div class="section__container">
+      <div class="reveal">
+        <span class="section__label">Experience</span>
+        <h2 class="section__title">My Journey</h2>
+        <p class="section__subtitle">A timeline of my professional growth and education.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline__item reveal">
+          <div class="timeline__date">2024 — Present</div>
+          <h3 class="timeline__title">Freelance Web Developer & Data Scientist</h3>
+          <div class="timeline__company">Self-Employed</div>
+          <p class="timeline__desc">
+            Building full-stack web applications and data-driven solutions for clients.
+            Specializing in React, Next.js, Python, and machine learning projects.
+          </p>
+        </div>
+        <div class="timeline__item reveal">
+          <div class="timeline__date">2023 — 2024</div>
+          <h3 class="timeline__title">Civic Issue Tracker — Lead Developer</h3>
+          <div class="timeline__company">Community Project</div>
+          <p class="timeline__desc">
+            Designed and built a full-stack civic issue reporting platform with role-based access,
+            real-time dashboards, and geospatial mapping for community engagement.
+          </p>
+        </div>
+        <div class="timeline__item reveal">
+          <div class="timeline__date">2022 — Present</div>
+          <h3 class="timeline__title">B.Tech in Computer Science</h3>
+          <div class="timeline__company">University</div>
+          <p class="timeline__desc">
+            Studying computer science with a focus on data science, machine learning,
+            and web technologies. Active participant in hackathons and coding competitions.
+          </p>
+        </div>
+        <div class="timeline__item reveal">
+          <div class="timeline__date">2021 — 2022</div>
+          <h3 class="timeline__title">Self-Learning & Exploration</h3>
+          <div class="timeline__company">Online Platforms</div>
+          <p class="timeline__desc">
+            Started learning Python, web development, and data science through online courses.
+            Built multiple personal projects to solidify fundamentals.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Contact form submission
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const name = this.querySelector('input[placeholder="Your Name"]').value;
-            const email = this.querySelector('input[placeholder="Your Email"]').value;
-            const subject = this.querySelector('input[placeholder="Subject"]').value;
-            const message = this.querySelector('textarea').value;
-            
-            // Here you would typically send the data to your Python backend
-            // For demo purposes, we'll just show an alert
-            alert(`Thank you ${name}! Your message has been sent. I'll get back to you soon!`);
-            
-            // Reset form
-            this.reset();
-            
-            /* 
-            For Python backend integration, you would make a fetch request like:
-            
-            fetch('/api/contact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    subject: subject,
-                    message: message
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert('Message sent successfully!');
-            })
-            .catch(error => {
-                alert('Error sending message. Please try again.');
-            });
-            */
-        });
+  <!-- Contact Section -->
+  <section class="section" id="contact">
+    <div class="section__container">
+      <div class="reveal">
+        <span class="section__label">Contact</span>
+        <h2 class="section__title">Let's Work Together</h2>
+        <p class="section__subtitle">Have a project in mind? Let's bring it to life. I'm always open to new
+          opportunities and collaborations.</p>
+      </div>
+      <div class="contact__grid">
+        <div class="contact__info reveal">
+          <a href="mailto:krishmody311@gmail.com" class="contact__card">
+            <div class="contact__card-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <div class="contact__card-label">Email</div>
+              <div class="contact__card-value">krishmody311@gmail.com</div>
+            </div>
+          </a>
+          <a href="https://github.com/Modi-Krish" target="_blank" class="contact__card">
+            <div class="contact__card-icon"><i class="fa-brands fa-github"></i></div>
+            <div>
+              <div class="contact__card-label">GitHub</div>
+              <div class="contact__card-value">github.com/modikrish</div>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/modikrish0311/" target="_blank" class="contact__card">
+            <div class="contact__card-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+            <div>
+              <div class="contact__card-label">LinkedIn</div>
+              <div class="contact__card-value">linkedin.com/in/modikrish</div>
+            </div>
+          </a>
+        </div>
+        <form class="contact__form reveal" id="contactForm">
+          <div class="form__group">
+            <label class="form__label" for="name">Your Name</label>
+            <input class="form__input" type="text" id="name" placeholder="John Doe" required>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="email">Your Email</label>
+            <input class="form__input" type="email" id="email" placeholder="john@example.com" required>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="subject">Subject</label>
+            <input class="form__input" type="text" id="subject" placeholder="Project Collaboration">
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="message">Message</label>
+            <textarea class="form__textarea" id="message" placeholder="Tell me about your project..."
+              required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary form__submit">
+            <i class="fa-solid fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
 
-        // Dynamic typing effect for hero title
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            const originalText = element.textContent;
-            element.textContent = '';
-            
-            function type() {
-                if (i < text.length) {
-                    element.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            
-            setTimeout(type, 1000);
-        }
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__text">© 2026 Modi Krish. Crafted with ❤️ and a lot of ☕</p>
+      <div class="footer__socials">
+        <a href="https://github.com/Modi-Krish" target="_blank" class="footer__social" aria-label="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://linkedin.com/in/modikrish0311" target="_blank" class="footer__social" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a href="mailto:krishmody311@gmail.com" class="footer__social" aria-label="Email">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
 
-        // Initialize typing effect when page loads
-        window.addEventListener('load', () => {
-            const heroTitle = document.querySelector('.hero-content h1');
-            if (heroTitle) {
-                typeWriter(heroTitle, 'Krish Modi');
-            }
-        });
-
-        // Add some interactive particles on mouse move
-        document.addEventListener('mousemove', (e) => {
-            const particle = document.createElement('div');
-            particle.style.position = 'fixed';
-            particle.style.top = e.clientY + 'px';
-            particle.style.left = e.clientX + 'px';
-            particle.style.width = '4px';
-            particle.style.height = '4px';
-            particle.style.background = 'rgba(102, 126, 234, 0.6)';
-            particle.style.borderRadius = '50%';
-            particle.style.pointerEvents = 'none';
-            particle.style.zIndex = '999';
-            particle.style.animation = 'particleFade 1s ease-out forwards';
-            
-            document.body.appendChild(particle);
-            
-            setTimeout(() => {
-                particle.remove();
-            }, 1000);
-        });
-
-        // Add particle fade animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes particleFade {
-                0% {
-                    opacity: 1;
-                    transform: scale(1);
-                }
-                100% {
-                    opacity: 0;
-                    transform: scale(0) translateY(-20px);
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
+  <script src="script.js"></script>
 </body>
+
 </html>

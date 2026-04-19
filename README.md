@@ -1,30 +1,45 @@
-# My Portfolio
+# Modi Krish — Portfolio
 
-This is my personal portfolio website showcasing my skills, projects, and contact information. It is designed to provide a comprehensive overview of my work as a developer.
+A personal portfolio website showcasing my projects, skills, experience, and achievements. Built with a premium dark-theme design featuring glassmorphism, smooth animations, and a fully responsive layout.
 
-## Project Structure
+## 🚀 Live Demo
 
-- `index.html`: The main HTML document containing the structure and content of the portfolio.
-- `Style.css`: The stylesheet that defines the visual aspects of the portfolio.
+Hosted live using GitHub Pages: [modi-krish.github.io/my-portfolio](https://modi-krish.github.io/my-portfolio)
 
-## Features
+## ✨ Features
 
-- Smooth scrolling navigation
-- Responsive design
-- Interactive elements with JavaScript
-- Sections for Home, About, Skills, Projects, and Contact
+- **Premium Dark Theme** — Sleek dark UI with purple/blue gradient accents
+- **Responsive Design** — Fully optimized for desktop, tablet, and mobile
+- **Smooth Animations** — Scroll-reveal effects, typing animation, floating cards, and parallax
+- **Interactive Elements** — Cursor glow, card tilt effects, and animated stat counters
+- **Sections** — Home, About, Skills, Projects, Experience, and Contact
+- **Contact Form** — Built-in contact form with validation
 
-## Getting Started
+## 📁 Project Structure
 
-To view the portfolio, simply open the `index.html` file in your web browser. 
+```
+├── index.html        # Main HTML document
+├── style.css         # Premium dark-theme stylesheet
+├── script.js         # Interactive animations and effects
+├── avatar.png        # Profile avatar image
+├── project-civic.png # Civic Issue Tracker project screenshot
+├── project-data.png  # Data Analytics Dashboard screenshot
+├── project-web.png   # E-Commerce Platform screenshot
+└── README.md         # This file
+```
 
-## Technologies Used
+## 🛠️ Technologies Used
 
-- HTML5
-- CSS3
-- JavaScript
-- Python (for backend integration, if applicable)
+- **HTML5** — Semantic structure
+- **CSS3** — Custom properties, glassmorphism, gradients, animations
+- **JavaScript** — Intersection Observer, DOM manipulation, micro-interactions
+- **Google Fonts** — Inter, JetBrains Mono
+- **Font Awesome** — Icon library
 
-## Contact
+## 📬 Contact
 
-For any inquiries or feedback, please reach out via email at krishmody311@gmail.com.
+For any inquiries or feedback, please reach out via email at [krishmody311@gmail.com](mailto:krishmody311@gmail.com).
+
+## About
+
+A personal portfolio website showcasing my projects, skills, certifications, and achievements. Built using HTML, CSS, and JavaScript with a clean, responsive design. Highlights include my AI/ML projects and event participation. Hosted live using GitHub Pages.
