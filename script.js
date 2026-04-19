@@ -121,23 +121,58 @@ projectCards.forEach((card, index) => {
   card.style.transitionDelay = `${index * 0.15}s`;
 });
 
-// ===== CONTACT FORM =====
+// ===== CONTACT FORM (Web3Forms) =====
 const contactForm = document.getElementById('contactForm');
 
-contactForm.addEventListener('submit', (e) => {
+contactForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   
   const submitBtn = contactForm.querySelector('.form__submit');
   const originalText = submitBtn.innerHTML;
   
-  submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Message Sent!';
-  submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+  // Show loading state
+  submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+  submitBtn.disabled = true;
+  submitBtn.style.opacity = '0.7';
   
-  setTimeout(() => {
-    submitBtn.innerHTML = originalText;
-    submitBtn.style.background = '';
-    contactForm.reset();
-  }, 3000);
+  try {
+    const formData = new FormData(contactForm);
+    
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      // Success state
+      submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Message Sent!';
+      submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+      submitBtn.style.opacity = '1';
+      contactForm.reset();
+      
+      setTimeout(() => {
+        submitBtn.innerHTML = originalText;
+        submitBtn.style.background = '';
+        submitBtn.disabled = false;
+      }, 4000);
+    } else {
+      throw new Error(result.message || 'Something went wrong');
+    }
+  } catch (error) {
+    // Error state
+    submitBtn.innerHTML = '<i class="fa-solid fa-exclamation-triangle"></i> Failed to Send';
+    submitBtn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+    submitBtn.style.opacity = '1';
+    console.error('Form submission error:', error);
+    
+    setTimeout(() => {
+      submitBtn.innerHTML = originalText;
+      submitBtn.style.background = '';
+      submitBtn.disabled = false;
+    }, 3000);
+  }
 });
 
 // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====

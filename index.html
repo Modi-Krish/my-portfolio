@@ -432,21 +432,25 @@
           </a>
         </div>
         <form class="contact__form reveal" id="contactForm">
+          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+          <input type="hidden" name="subject" value="New Portfolio Contact from Website">
+          <input type="hidden" name="from_name" value="Portfolio Contact Form">
+          <input type="checkbox" name="botcheck" style="display: none;">
           <div class="form__group">
             <label class="form__label" for="name">Your Name</label>
-            <input class="form__input" type="text" id="name" placeholder="John Doe" required>
+            <input class="form__input" type="text" id="name" name="name" placeholder="John Doe" required>
           </div>
           <div class="form__group">
             <label class="form__label" for="email">Your Email</label>
-            <input class="form__input" type="email" id="email" placeholder="john@example.com" required>
+            <input class="form__input" type="email" id="email" name="email" placeholder="john@example.com" required>
           </div>
           <div class="form__group">
             <label class="form__label" for="subject">Subject</label>
-            <input class="form__input" type="text" id="subject" placeholder="Project Collaboration">
+            <input class="form__input" type="text" id="subject" name="subject" placeholder="Project Collaboration">
           </div>
           <div class="form__group">
             <label class="form__label" for="message">Message</label>
-            <textarea class="form__textarea" id="message" placeholder="Tell me about your project..."
+            <textarea class="form__textarea" id="message" name="message" placeholder="Tell me about your project..."
               required></textarea>
           </div>
           <button type="submit" class="btn btn--primary form__submit">
