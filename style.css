@@ -35,7 +35,9 @@
 }
 
 /* ===== RESET & BASE ===== */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -67,7 +69,8 @@ img {
   display: block;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
@@ -465,6 +468,7 @@ ul, ol {
   border: 2px solid transparent;
   background: var(--gradient-hero) border-box;
   -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   animation: rotate 8s linear infinite;
@@ -659,12 +663,29 @@ ul, ol {
   margin-bottom: 1rem;
 }
 
-.skill-card__icon--purple { background: rgba(139, 92, 246, 0.1); }
-.skill-card__icon--blue { background: rgba(59, 130, 246, 0.1); }
-.skill-card__icon--cyan { background: rgba(6, 182, 212, 0.1); }
-.skill-card__icon--pink { background: rgba(236, 72, 153, 0.1); }
-.skill-card__icon--green { background: rgba(16, 185, 129, 0.1); }
-.skill-card__icon--orange { background: rgba(245, 158, 11, 0.1); }
+.skill-card__icon--purple {
+  background: rgba(139, 92, 246, 0.1);
+}
+
+.skill-card__icon--blue {
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.skill-card__icon--cyan {
+  background: rgba(6, 182, 212, 0.1);
+}
+
+.skill-card__icon--pink {
+  background: rgba(236, 72, 153, 0.1);
+}
+
+.skill-card__icon--green {
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.skill-card__icon--orange {
+  background: rgba(245, 158, 11, 0.1);
+}
 
 .skill-card__title {
   font-size: 1rem;
@@ -1074,6 +1095,7 @@ ul, ol {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1081,28 +1103,57 @@ ul, ol {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
 }
 
 @keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
 }
 
 /* ===== SCROLLBAR ===== */
