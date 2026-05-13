@@ -12,11 +12,7 @@ function StatCounter({ target, label }) {
   );
 }
 
-<<<<<<< HEAD
 export default function Hero({ onResumeClick }) {
-=======
-export default function Hero() {
->>>>>>> 8ea7f443b164b537bd410630b2e17372391e431c
   const [greeting, setGreeting] = useState('');
   const fullGreeting = "Hello, I'm";
   const [scrollY, setScrollY] = useState(0);
@@ -75,15 +71,9 @@ export default function Hero() {
             <a href="#projects" className="btn btn--primary" onClick={(e) => handleClick(e, '#projects')}>
               <i className="fa-solid fa-rocket"></i> View My Work
             </a>
-<<<<<<< HEAD
             <button className="btn btn--ghost" onClick={onResumeClick}>
               <i className="fa-solid fa-file-pdf"></i> View Resume
             </button>
-=======
-            <a href="#contact" className="btn btn--ghost" onClick={(e) => handleClick(e, '#contact')}>
-              <i className="fa-solid fa-paper-plane"></i> Get In Touch
-            </a>
->>>>>>> 8ea7f443b164b537bd410630b2e17372391e431c
           </div>
           <div className="hero__stats">
             <StatCounter target={15} label="Projects" />

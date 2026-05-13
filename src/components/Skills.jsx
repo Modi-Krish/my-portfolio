@@ -6,11 +6,7 @@ const SKILLS = [
     icon: '⚛️', colorClass: 'skill-card__icon--cyan',
     title: 'Frameworks & Tools',
     desc: 'Building scalable applications with modern frameworks and robust API architectures.',
-<<<<<<< HEAD
     tags: ['React.js', 'Django', 'RESTful APIs', 'Node.js', 'Express'],
-=======
-    tags: ['React.js', 'Django', 'REST APIs', 'Node.js'],
->>>>>>> 8ea7f443b164b537bd410630b2e17372391e431c
   },
   {
     icon: '🧠', colorClass: 'skill-card__icon--purple',
@@ -22,11 +18,7 @@ const SKILLS = [
     icon: '☁️', colorClass: 'skill-card__icon--blue',
     title: 'Cloud & DevOps',
     desc: 'Managing infrastructure and streamlining development with cloud services and version control.',
-<<<<<<< HEAD
     tags: ['AWS', 'Git', 'API Integration', 'Docker', 'CI/CD'],
-=======
-    tags: ['AWS', 'Git', 'API Integration', 'Docker'],
->>>>>>> 8ea7f443b164b537bd410630b2e17372391e431c
   },
   {
     icon: '💻', colorClass: 'skill-card__icon--pink',
@@ -44,11 +36,7 @@ const SKILLS = [
     icon: '🛠️', colorClass: 'skill-card__icon--orange',
     title: 'Other Tools',
     desc: 'Additional libraries and tools used for automation and specialized tasks.',
-<<<<<<< HEAD
     tags: ['OpenCV', 'gspread', 'Pandas', 'NumPy', 'Agile', 'Scrum'],
-=======
-    tags: ['OpenCV', 'gspread', 'Pandas', 'NumPy'],
->>>>>>> 8ea7f443b164b537bd410630b2e17372391e431c
   },
 ];
 

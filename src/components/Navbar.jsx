@@ -11,11 +11,7 @@ const NAV_LINKS = [
   { href: '#contact', label: 'Contact' },
 ];
 
-<<<<<<< HEAD
 export default function Navbar({ onResumeClick }) {
-=======
-export default function Navbar() {
->>>>>>> 8ea7f443b164b537bd410630b2e17372391e431c
   const [scrolled, setScrolled] = useState(false);
   const [activeLink, setActiveLink] = useState('#home');
   const [menuOpen, setMenuOpen] = useState(false);
@@ -48,15 +44,12 @@ export default function Navbar() {
     setMenuOpen(false);
   };
 
-<<<<<<< HEAD
   const handleResumeClick = (e) => {
     e.preventDefault();
     onResumeClick();
     setMenuOpen(false);
   };
 
-=======
->>>>>>> 8ea7f443b164b537bd410630b2e17372391e431c
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} id="navbar">
       <div className="navbar__inner">
@@ -75,7 +68,6 @@ export default function Navbar() {
               </a>
             </li>
           ))}
-<<<<<<< HEAD
           <li>
             <a href="#" className="navbar__link" onClick={handleResumeClick}>
               Resume
@@ -85,12 +77,6 @@ export default function Navbar() {
         <button className="navbar__cta" onClick={handleResumeClick}>
           <i className="fa-solid fa-file-pdf"></i> Resume
         </button>
-=======
-        </ul>
-        <a href="#contact" className="navbar__cta" onClick={(e) => handleNavClick(e, '#contact')}>
-          Let's Talk
-        </a>
->>>>>>> 8ea7f443b164b537bd410630b2e17372391e431c
         <button
           className="navbar__menu-btn"
           aria-label="Toggle menu"

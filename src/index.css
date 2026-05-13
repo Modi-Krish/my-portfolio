@@ -201,7 +201,6 @@ input, textarea, button {
   font-size: 0.9rem;
   box-shadow: var(--shadow-glow);
   color: #fff;
-<<<<<<< HEAD
   border: none;
   cursor: pointer;
   font-family: inherit;
@@ -211,8 +210,6 @@ input, textarea, button {
 .navbar__cta:hover {
   transform: translateY(-2px);
   filter: brightness(1.1);
-=======
->>>>>>> 8ea7f443b164b537bd410630b2e17372391e431c
 }
 
 .navbar__menu-btn {
@@ -810,7 +807,6 @@ input, textarea, button {
   box-shadow: var(--shadow-glow);
 }
 
-<<<<<<< HEAD
 /* --- Resume Modal --- */
 body.resume-open {
   overflow: hidden;
@@ -1075,8 +1071,6 @@ body.resume-open {
   }
 }
 
-=======
->>>>>>> 8ea7f443b164b537bd410630b2e17372391e431c
 .achievement-card__icon {
   font-size: 2.5rem;
   margin-bottom: 1rem;

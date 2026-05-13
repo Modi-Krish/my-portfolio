@@ -1,15 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import ScrollReveal from './ScrollReveal';
 
-<<<<<<< HEAD
 import { PROFILE_DATA } from '../constants/profileData';
 
 const GITHUB_USERNAME = PROFILE_DATA.githubUsername;
 const FEATURED_TOPIC = PROFILE_DATA.featuredTopic;
-=======
-const GITHUB_USERNAME = 'Modi-Krish';
-const FEATURED_TOPIC = 'portfolio'; // Tag your GitHub repos with this topic to show them here
->>>>>>> 8ea7f443b164b537bd410630b2e17372391e431c
 
 function ProjectCard({ project, index }) {
   const cardRef = useRef(null);
