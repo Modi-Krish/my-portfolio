@@ -1040,9 +1040,6 @@ body.resume-open {
   }
   
   /* Fix large gaps by allowing sections to break, but keeping items intact */
-  .latex-section {
-    /* Removed page-break-inside to allow section splitting across pages */
-  }
   .latex-section-title {
     page-break-after: avoid;
     break-after: avoid;
